@@ -30,6 +30,7 @@ if neo4j_username and neo4j_password and neo4j_url:
         session.run("RETURN 1")
         print("Neo4j database connected successfully!")
 
+
 # Function to scrape text from a website
 
 
@@ -50,6 +51,11 @@ def get_response_data():
     user_input = request.json.get("user_input", "")
     user_code = request.json.get("user_code", "")
     if user_code != user_code_for_auth:
+        print(
+            "unauthorized user code, user_code: {}, user_code_for_auth: {}".format(
+                user_code, user_code_for_auth,
+            )
+        )
         return jsonify({"error": "unauthorized user code"}), 403
     if not user_input:
         return jsonify({"error": "No input provided"}), 400
