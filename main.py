@@ -57,7 +57,7 @@ def get_response_data():
                 user_code, user_code_for_auth,
             )
         )
-        return jsonify({"error": "unauthorized user code"}), 403
+        return jsonify({"error": "unauthorized user code: {}, {}".format(user_code, user_code_for_auth)}), 403
     if not user_input:
         return jsonify({"error": "No input provided"}), 400
     print("starting openai call")
