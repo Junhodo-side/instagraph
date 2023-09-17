@@ -13,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("OPENAI_API_KEY").strip()
 user_code_for_auth = os.getenv("USER_CODE").strip()
 response_data = ""
 
@@ -50,7 +50,6 @@ def get_response_data():
     global response_data
     user_input = request.json.get("user_input", "")
     user_code = request.json.get("user_code", "")
-    print(user_code_for_auth)
     if user_code != user_code_for_auth:
         return jsonify({"error": "unauthorized user code"}), 403
     if not user_input:
