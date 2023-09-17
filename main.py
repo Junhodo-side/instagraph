@@ -4,7 +4,6 @@ import openai
 import requests
 from bs4 import BeautifulSoup
 from graphviz import Digraph
-import networkx as nx
 from neo4j import GraphDatabase
 from flask import Flask, jsonify, render_template, request
 from dotenv import load_dotenv
