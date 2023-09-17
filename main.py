@@ -50,6 +50,7 @@ def get_response_data():
     global response_data
     user_input = request.json.get("user_input", "")
     user_code = request.json.get("user_code", "")
+    print(user_code_for_auth)
     if user_code != user_code_for_auth:
         print(
             "unauthorized user code, user_code: {}, user_code_for_auth: {}".format(
