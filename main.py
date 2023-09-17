@@ -14,7 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 user_code_for_auth = os.getenv("USER_CODE")
 response_data = ""
 
