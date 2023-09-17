@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 # Set your OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
-user_code_for_auth = os.getenv("USER_CODE")
+user_code_for_auth = os.getenv("USER_CODE").strip()
 response_data = ""
 
 # If Neo4j credentials are set, then Neo4j is used to store information
@@ -52,12 +52,7 @@ def get_response_data():
     user_code = request.json.get("user_code", "")
     print(user_code_for_auth)
     if user_code != user_code_for_auth:
-        print(
-            "unauthorized user code, user_code: {}, user_code_for_auth: {}".format(
-                user_code, user_code_for_auth,
-            )
-        )
-        return jsonify({"error": "unauthorized user code: {}, {}".format(user_code, user_code_for_auth)}), 403
+        return jsonify({"error": "unauthorized user code"}), 403
     if not user_input:
         return jsonify({"error": "No input provided"}), 400
     print("starting openai call")
